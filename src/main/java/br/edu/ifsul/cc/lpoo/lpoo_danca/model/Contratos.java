@@ -15,7 +15,7 @@ public class Contratos {
     private Integer id;
     private Integer dataInicio;
     private Double valorDesconto;
-    private String formaPgto;
+  
     private Alunos aluno;
     private Collection<itensContratos> itensContrato;
     private FormaPgt formaPgt;
@@ -24,15 +24,16 @@ public class Contratos {
     public Contratos() {
     }
 
-    public Contratos(Integer id, Integer dataInicio, Double valorDesconto, String formaPgto, Alunos aluno, Collection<itensContratos> itensContrato, FormaPgt formaPgt) {
+    public Contratos(Integer id, Integer dataInicio, Double valorDesconto, Alunos aluno, Collection<itensContratos> itensContrato, FormaPgt formaPgt) {
         this.id = id;
         this.dataInicio = dataInicio;
         this.valorDesconto = valorDesconto;
-        this.formaPgto = formaPgto;
         this.aluno = aluno;
         this.itensContrato = itensContrato;
         this.formaPgt = formaPgt;
     }
+
+    
 
     
 
@@ -60,13 +61,24 @@ public class Contratos {
         this.valorDesconto = valorDesconto;
     }
 
-    public String getFormaPgto() {
-        return formaPgto;
+    public void setFormaPgt(FormaPgt formaPgt) {
+        this.formaPgt = formaPgt;
     }
 
-    public void setFormaPgto(String formaPgto) {
-        this.formaPgto = formaPgto;
+    public FormaPgt getFormaPgt() {
+        return formaPgt;
     }
+
+    public void setItensContrato(Collection<itensContratos> itensContrato) {
+        this.itensContrato = itensContrato;
+    }
+
+    public Collection<itensContratos> getItensContrato() {
+        return itensContrato;
+    }
+
+    
+
 
     public Alunos getAluno() {
         return aluno;
