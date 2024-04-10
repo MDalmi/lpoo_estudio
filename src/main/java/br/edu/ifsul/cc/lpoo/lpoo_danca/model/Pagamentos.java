@@ -69,7 +69,7 @@ public class Pagamentos {
         this.contrato = contrato;
     }
     
-    public void GerarPagamento(Integer idContrato, Integer mesRef){
+    public void GerarPagamento(Integer mesRef){
         
         
         

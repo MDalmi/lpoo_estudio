@@ -5,6 +5,7 @@
 package br.edu.ifsul.cc.lpoo.lpoo_danca.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,17 +23,12 @@ public class Modalidades implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String descricao;
-
-    public Modalidades() {
-    }
-
-    public Modalidades(Integer id, String descricao) {
-        this.id = id;
-        this.descricao = descricao;
-    }
-
+    
+    
+   
+   
     public Integer getId() {
         return id;
     }

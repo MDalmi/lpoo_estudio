@@ -18,27 +18,25 @@ import javax.persistence.TemporalType;
  *
  * @author dalmi
  */
-@Entity
+
 public abstract class Pessoas implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+   
     private Integer id;
 
-    @Column(nullable = false, length = 100)
+   
     private String nome;
 
-    @Column(nullable = false, length = 100)
+   
     private String fone;
 
-    @Column(nullable = true, length = 100)
-    @Temporal(TemporalType.DATE)
+   
     private Calendar dataAniver;
 
-    @Column(nullable = false, length = 100)
+  
     private String email;
 
-    @Column(nullable = false, length = 100)
+    
     private String endereco;
 
     public Pessoas() {

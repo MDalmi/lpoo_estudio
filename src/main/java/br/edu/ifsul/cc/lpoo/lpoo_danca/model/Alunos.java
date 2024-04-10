@@ -16,15 +16,13 @@ import javax.persistence.TemporalType;
  *
  * @author dalmi
  */
-@Entity
-@Table(name = "tb_alunos")
+
 public class Alunos extends Pessoas {
 
-    @Column(nullable = false, length = 11)
-    @Temporal(TemporalType.DATE)
+  
     private Calendar dataInicio;
     
-    @Column(nullable = false, length = 11)
+    
     private Integer dataPgm;
 
     public Alunos() {

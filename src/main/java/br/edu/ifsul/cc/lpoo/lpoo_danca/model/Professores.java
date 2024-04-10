@@ -5,6 +5,8 @@
 package br.edu.ifsul.cc.lpoo.lpoo_danca.model;
 
 import java.util.Calendar;
+import java.util.Collection;
+import javax.persistence.Column;
 
 /**
  *
@@ -13,17 +15,18 @@ import java.util.Calendar;
 public class Professores extends Pessoas{
     
     private Calendar dataAdmissao;
+    private Collection<FolhaPagamento> folhapagamento;
+   
+    private Collection<Modalidades> modalidades;
 
-    public Professores(Calendar dataAdmissao) {
-        this.dataAdmissao = dataAdmissao;
-    }
     
     public Professores() {
     }
 
-    public Professores(Calendar dataAdmissao, Integer id, String nome, String fone, Calendar dataAniver, String email, String endereco) {
+    public Professores(Calendar dataAdmissao, Collection<FolhaPagamento> folhapagamento, Integer id, String nome, String fone, Calendar dataAniver, String email, String endereco) {
         super(id, nome, fone, dataAniver, email, endereco);
         this.dataAdmissao = dataAdmissao;
+        this.folhapagamento = folhapagamento;
     }
 
     public Calendar getDataAdmissao() {
@@ -33,6 +36,16 @@ public class Professores extends Pessoas{
     public void setDataAdmissao(Calendar dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
     }
+
+    public void setFolhapagamento(Collection<FolhaPagamento> folhapagamento) {
+        this.folhapagamento = folhapagamento;
+    }
+
+    public Collection<FolhaPagamento> getFolhapagamento() {
+        return folhapagamento;
+    }
+    
+    
     
     
     
