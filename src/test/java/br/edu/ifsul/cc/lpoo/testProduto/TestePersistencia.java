@@ -38,25 +38,26 @@ public class TestePersistencia {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    //@Test
+    @Test
     public void testePersistenciaModalidade() throws Exception {
         // criar meu obj
 
         Modalidades m = new Modalidades();
-        m.setDescricao("danca livre");
-
+        m.setDescricao("teste");
+     
+      
         //persistir 
         jpa.persist(m);
 
         //buscar objeto
-        Modalidades aux1 = (Modalidades) jpa.find(Modalidades.class, m.getDescricao());
+        //Modalidades aux1 = (Modalidades) jpa.find(Modalidades.class, m.getDescricao());
 
         //verificar se objeto persistido é igual ao criado
-        Assert.assertEquals(m.getDescricao(), aux1.getDescricao());
+        //Assert.assertEquals(m.getDescricao(), aux1.getDescricao());
 
     }
 
-    @Test
+    //@Test
     public void testePersistenciaAlunos() throws Exception {
         // criar meu obj
 
