@@ -6,7 +6,10 @@ package br.edu.ifsul.cc.lpoo.testProduto;
 
 import br.edu.ifsul.cc.lpoo.lpoo_danca.dao.PersistenciaJPA;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Alunos;
+import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Contratos;
+import br.edu.ifsul.cc.lpoo.lpoo_danca.model.FormaPgt;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Modalidades;
+import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Pagamentos;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Pessoas;
 import java.util.Calendar;
 import junit.framework.Assert;
@@ -38,7 +41,7 @@ public class TestePersistencia {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    @Test
+    //@Test
     public void testePersistenciaModalidade() throws Exception {
         // criar meu obj
 
@@ -55,6 +58,40 @@ public class TestePersistencia {
         //verificar se objeto persistido é igual ao criado
         //Assert.assertEquals(m.getDescricao(), aux1.getDescricao());
 
+    }
+    
+    @Test
+    public void testePersistenciaPagamentos() throws Exception {
+        
+        Pagamentos pg = new Pagamentos();
+        Contratos c = new Contratos();
+        Alunos a = new Alunos();
+        
+        Calendar c1 = Calendar.getInstance();
+        
+        c1.set(2003, 12, 2);
+        
+        a.setDataAniver(c1);
+        a.setDataInicio(c1);
+        a.setDataPgm(15);
+        
+        
+        
+                
+        c.setAluno(a);
+        c.setDataInicio(12);
+        c.setFormaPgt(FormaPgt.PIX);
+        c.setId(1);
+        c.setValorDesconto(105.5);
+        
+        pg.setContrato(c);
+        pg.setDataPgt(c1);
+        pg.setDataVcto(c1);
+        pg.setId(1);
+        pg.setValor(205.5);
+        
+        jpa.persist(pg);
+        
     }
 
     //@Test
