@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,24 +21,27 @@ import javax.persistence.TemporalType;
  * @author dalmi
  */
 
+@MappedSuperclass 
+@Table(name = "tb_pessoa")
 public abstract class Pessoas implements Serializable {
 
-   
+    @Id
     private Integer id;
 
-   
+    @Column(nullable = false, length = 50)
     private String nome;
 
-   
+    @Column(nullable = false, length = 50)
     private String fone;
 
-   
+    @Column(nullable = true)
+    @Temporal(TemporalType.DATE)
     private Calendar dataAniver;
 
-  
+    @Column(nullable = false, length = 50)
     private String email;
 
-    
+    @Column(nullable = false, length = 50)
     private String endereco;
 
     public Pessoas() {

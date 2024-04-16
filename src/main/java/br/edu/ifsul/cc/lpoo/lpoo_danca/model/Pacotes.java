@@ -4,15 +4,34 @@
  */
 package br.edu.ifsul.cc.lpoo.lpoo_danca.model;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author dalmi
+ * 
+ * campo descricao deve conter até 120 caracteres e ser obrigatório. 
+    campo valor deve ser obrigatório
  */
-class Pacotes {
+@Entity
+public class Pacotes implements Serializable{
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
+    
+    @Column(nullable = false, length = 120)
     private String descricao;
+    
+    @Column(nullable = false, columnDefinition = "DECIMAL(10,2)")
     private Double valor;
+    
+    @Column(nullable = false)
     private Modalidades modalidade;
 
     public Pacotes() {

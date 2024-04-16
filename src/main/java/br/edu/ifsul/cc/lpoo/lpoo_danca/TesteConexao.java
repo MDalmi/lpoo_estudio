@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class TesteConexao {
     public static void main(String[] args) {
-        String url = "jdbc:postgresql://localhost:5432/db_estudio";
+        String url = "jdbc:postgresql://localhost:5432/teste2";
         String user = "postgres";
         String password = "1234";
         try {

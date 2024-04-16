@@ -7,16 +7,25 @@ package br.edu.ifsul.cc.lpoo.lpoo_danca.model;
 import java.util.Calendar;
 import java.util.Collection;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author dalmi
  */
+@Entity
 public class Professores extends Pessoas{
     
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Calendar dataAdmissao;
+    
+    @Column(nullable = false)
     private Collection<FolhaPagamento> folhapagamento;
    
+    @Column(nullable = false)
     private Collection<Modalidades> modalidades;
 
     

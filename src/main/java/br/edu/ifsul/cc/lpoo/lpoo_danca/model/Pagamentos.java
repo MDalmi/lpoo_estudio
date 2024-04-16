@@ -4,18 +4,40 @@
  */
 package br.edu.ifsul.cc.lpoo.lpoo_danca.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author dalmi
  */
-public class Pagamentos {
+
+@Entity
+public class Pagamentos implements Serializable{
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
+    
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Calendar dataVcto;
+    
+    @Column(nullable = false, columnDefinition = "DECIMAL(10,2)")
     private Double valor;
+    
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Calendar dataPgt;
+     
+    @Column(nullable = false)
     private Contratos contrato;
 
     public Pagamentos() {

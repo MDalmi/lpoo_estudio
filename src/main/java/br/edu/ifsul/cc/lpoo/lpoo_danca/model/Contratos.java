@@ -4,27 +4,58 @@
  */
 package br.edu.ifsul.cc.lpoo.lpoo_danca.model;
 
+import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Collection;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author dalmi
  */
-public class Contratos {
+@Entity
+@Table(name = "tb_contratos")
+public class Contratos implements Serializable{
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    private Integer dataInicio;
+    
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Calendar dataInicio;
+    
+    @Column(nullable = false, columnDefinition = "DECIMAL(10,2)")
     private Double valorDesconto;
   
+    @Column(nullable = false)
     private Alunos aluno;
+    
+     @Column(nullable = false)
     private Collection<itensContratos> itensContrato;
+    
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private FormaPgt formaPgt;
     
 
     public Contratos() {
     }
 
-    public Contratos(Integer id, Integer dataInicio, Double valorDesconto, Alunos aluno, Collection<itensContratos> itensContrato, FormaPgt formaPgt) {
+    public Contratos(Integer id, Calendar dataInicio, Double valorDesconto, Alunos aluno, Collection<itensContratos> itensContrato, FormaPgt formaPgt) {
         this.id = id;
         this.dataInicio = dataInicio;
         this.valorDesconto = valorDesconto;
@@ -45,11 +76,11 @@ public class Contratos {
         this.id = id;
     }
 
-    public Integer getDataInicio() {
+    public Calendar getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Integer dataInicio) {
+    public void setDataInicio(Calendar dataInicio) {
         this.dataInicio = dataInicio;
     }
 

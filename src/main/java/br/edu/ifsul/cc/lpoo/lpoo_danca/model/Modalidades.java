@@ -20,15 +20,20 @@ import javax.persistence.Id;
 public class Modalidades implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(nullable = false)
     private String descricao;
+
+    public Modalidades() {
+    }
+
+    public Modalidades(Integer id, String descricao) {
+        this.id = id;
+        this.descricao = descricao;
+    }
     
     
-   
-   
     public Integer getId() {
         return id;
     }

@@ -4,15 +4,32 @@
  */
 package br.edu.ifsul.cc.lpoo.lpoo_danca.model;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author dalmi
  */
-public class itensContratos {
+
+@Entity
+public class itensContratos implements Serializable{
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idContrato;
+    
+    @Column(nullable = false)
     private Integer idPacote;
+    
+    @Column(nullable = false)
     private Contratos contrato;
+    
+    @Column(nullable = false)
     private Pacotes pacote;
 
     public itensContratos() {
@@ -24,6 +41,9 @@ public class itensContratos {
         this.contrato = contrato;
         this.pacote = pacote;
     }
+
+    
+    
 
     public Integer getIdContrato() {
         return idContrato;
@@ -47,6 +67,14 @@ public class itensContratos {
 
     public void setContrato(Contratos contrato) {
         this.contrato = contrato;
+    }
+
+    public void setPacote(Pacotes pacote) {
+        this.pacote = pacote;
+    }
+
+    public Pacotes getPacote() {
+        return pacote;
     }
     
     

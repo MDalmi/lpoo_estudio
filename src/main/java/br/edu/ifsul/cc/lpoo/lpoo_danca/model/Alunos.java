@@ -17,12 +17,16 @@ import javax.persistence.TemporalType;
  * @author dalmi
  */
 
+
+@Entity
 public class Alunos extends Pessoas {
 
-  
+    
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Calendar dataInicio;
     
-    
+    @Column(nullable = false, length = 10, columnDefinition = "DECIMAL(10,2)")
     private Integer dataPgm;
 
     public Alunos() {
