@@ -7,7 +7,12 @@ package br.edu.ifsul.cc.lpoo.lpoo_danca.model;
 import java.util.Calendar;
 import java.util.Collection;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,19 +21,19 @@ import javax.persistence.TemporalType;
  * @author dalmi
  */
 @Entity
+@DiscriminatorValue("P")
 public class Professores extends Pessoas{
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     @Temporal(TemporalType.DATE)
     private Calendar dataAdmissao;
     
-    @Column(nullable = false)
+    @OneToMany(mappedBy = "professor")
     private Collection<FolhaPagamento> folhapagamento;
    
-    @Column(nullable = false)
+    @ManyToMany
     private Collection<Modalidades> modalidades;
 
-    
     public Professores() {
     }
 

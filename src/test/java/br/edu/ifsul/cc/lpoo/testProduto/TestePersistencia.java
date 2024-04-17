@@ -13,6 +13,7 @@ import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Pagamentos;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Pessoas;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.itensContratos;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Pacotes;
+import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Professores;
 import java.util.Calendar;
 import junit.framework.Assert;
 import org.junit.After;
@@ -32,12 +33,9 @@ public class TestePersistencia {
 
     @Before // o que fazer antes da persistencia
     public void setUp() {
-        
-        if(jpa.conexaoAberta()){
-            
-            System.out.println("Conexão Aberta");
-            
-        }
+
+        jpa.conexaoAberta();
+
     }
 
     @After // o que fazer depois da persistencia
@@ -48,56 +46,13 @@ public class TestePersistencia {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    @Test
+    //@Test
     public void testePersistenciaModalidade() throws Exception {
-        // criar meu obj
-
-        
-
-        //persistir 
-        //jpa.persist(m);
 
         //buscar objeto
         //Modalidades aux1 = (Modalidades) jpa.find(Modalidades.class, m.getDescricao());
         //verificar se objeto persistido é igual ao criado
         //Assert.assertEquals(m.getDescricao(), aux1.getDescricao());
-    }
-
-    //@Test
-    public void testePersistenciaPagamentos() throws Exception {
-
-        Pagamentos pg = new Pagamentos();
-        Contratos c = new Contratos();
-        Alunos a = new Alunos();
-        itensContratos iC = new itensContratos();
-
-        Calendar c1 = Calendar.getInstance();
-
-        c1.set(2003, 12, 2);
-
-        a.setDataAniver(c1);
-        a.setDataInicio(c1);
-        a.setDataPgm(15);
-
-        c.setAluno(a);
-        c.setDataInicio(c1);
-        c.setFormaPgt(FormaPgt.PIX);
-        c.setId(1);
-        c.setValorDesconto(105.5);
-
-        iC.setContrato(c);
-        iC.setIdContrato(Integer.MIN_VALUE);
-        iC.setIdPacote(Integer.MIN_VALUE);
-
-        //c.setItensContrato();
-        pg.setContrato(c);
-        pg.setDataPgt(c1);
-        pg.setDataVcto(c1);
-        pg.setId(1);
-        pg.setValor(205.5);
-
-        jpa.persist(pg);
-
     }
 
     //@Test
@@ -119,12 +74,6 @@ public class TestePersistencia {
         //persistir 
         jpa.persist(a);
 
-        //buscar objeto
-        Pessoas aux = (Pessoas) jpa.find(Pessoas.class, a.getNome());
-
-        //verificar se objeto persistido é igual ao criado
-        Assert.assertEquals(a.getNome(), aux.getNome());
-
     }
 
     //@Test
@@ -134,12 +83,74 @@ public class TestePersistencia {
         Modalidades m = new Modalidades();
 
         m.setDescricao("Dança da Chuva");
+        m.setId(1);
 
         p.setDescricao("Pacote Danca da Chuva");
         p.setModalidade(m);
         p.setValor(1500.0);
 
+        jpa.persist(m);
         jpa.persist(p);
+    }
+
+    @Test
+    public void testePersistenciaContrato_Pagamento() throws Exception {
+
+        Pacotes p = new Pacotes();
+        Modalidades m = new Modalidades();
+
+        m.setDescricao("Dança da Chuva");
+        m.setId(1);
+
+        p.setDescricao("Pacote Danca da Chuva");
+        p.setModalidade(m);
+        p.setValor(1500.0);
+
+        jpa.persist(m);
+        jpa.persist(p);
+   
+        itensContratos ic1 = new itensContratos();
+        ic1.setPacote(p);
+        
+       jpa.persist(ic1);
+        
+        Alunos a = new Alunos();
+        a.setId(1);
+        a.setEmail("seucarro.co");
+        a.setEndereco("Rua da Calma");
+        a.setFone("123123123");
+        a.setNome("Suares");
+        a.setDataPgm(18);
+        a.setDataInicio(Calendar.getInstance());
+        
+       
+        jpa.persist(a);
+        
+
+        Contratos contrato = new Contratos();
+        
+        contrato.setValorDesconto(100.0);
+        contrato.setFormaPgt(FormaPgt.DINHEIRO); // Exemplo de enum FormaPgt
+        contrato.setAluno(a);
+        contrato.setItensContrato(ic1);
+
+        jpa.persist(contrato);
+        
+        
+        Pagamentos p1 = new Pagamentos();
+        
+        Calendar c = Calendar.getInstance();
+        c.set(2024, 4, 20);
+        
+        p1.setContrato(contrato);
+        p1.setDataPgt(Calendar.getInstance());
+        p1.setDataVcto(c);
+        p1.setValor(1350.0);
+        
+        jpa.persist(p1);
+        
+       
+     
     }
 
 }

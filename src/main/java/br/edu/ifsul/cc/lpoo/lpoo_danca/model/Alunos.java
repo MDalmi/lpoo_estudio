@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 
 
 @Entity
+@DiscriminatorValue("A")
 public class Alunos extends Pessoas {
 
     
@@ -26,10 +27,11 @@ public class Alunos extends Pessoas {
     @Temporal(TemporalType.DATE)
     private Calendar dataInicio;
     
-    @Column(nullable = false, length = 10, columnDefinition = "DECIMAL(10,2)")
+    @Column(nullable = false, precision = 10, scale = 2)
     private Integer dataPgm;
 
     public Alunos() {
+        this.dataInicio = Calendar.getInstance();
     }
 
     public Alunos(Calendar dataInicio, Integer dataPgm) {

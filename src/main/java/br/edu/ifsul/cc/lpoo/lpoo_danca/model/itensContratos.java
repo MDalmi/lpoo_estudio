@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -23,24 +26,21 @@ public class itensContratos implements Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idContrato;
     
-    @Column(nullable = false)
-    private Integer idPacote;
-    
-    @Column(nullable = false)
-    private Contratos contrato;
-    
-    @Column(nullable = false)
-    private Pacotes pacote;
+    @ManyToOne
+    @JoinColumn(name = "pacote_id", nullable = false)
+    private Pacotes pacote;//associação
 
     public itensContratos() {
     }
 
-    public itensContratos(Integer idContrato, Integer idPacote, Contratos contrato, Pacotes pacote) {
+    public itensContratos(Integer idContrato, Pacotes pacote) {
         this.idContrato = idContrato;
-        this.idPacote = idPacote;
-        this.contrato = contrato;
         this.pacote = pacote;
     }
+
+   
+
+   
 
     
     
@@ -53,22 +53,7 @@ public class itensContratos implements Serializable{
         this.idContrato = idContrato;
     }
 
-    public Integer getIdPacote() {
-        return idPacote;
-    }
-
-    public void setIdPacote(Integer idPacote) {
-        this.idPacote = idPacote;
-    }
-
-    public Contratos getContrato() {
-        return contrato;
-    }
-
-    public void setContrato(Contratos contrato) {
-        this.contrato = contrato;
-    }
-
+  
     public void setPacote(Pacotes pacote) {
         this.pacote = pacote;
     }

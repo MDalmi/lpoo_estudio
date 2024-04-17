@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -28,10 +30,11 @@ public class Pacotes implements Serializable{
     @Column(nullable = false, length = 120)
     private String descricao;
     
-    @Column(nullable = false, columnDefinition = "DECIMAL(10,2)")
+    @Column(nullable = false, precision = 10, scale = 2)
     private Double valor;
     
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "modalidade_id")
     private Modalidades modalidade;
 
     public Pacotes() {

@@ -11,6 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,17 +26,19 @@ public class Modalidades implements Serializable {
     @Id
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 120)
     private String descricao;
-
+    
+    
     public Modalidades() {
     }
 
     public Modalidades(Integer id, String descricao) {
         this.id = id;
         this.descricao = descricao;
+        
     }
-    
+
     
     public Integer getId() {
         return id;

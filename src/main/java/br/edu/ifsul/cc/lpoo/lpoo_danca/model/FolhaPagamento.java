@@ -9,6 +9,8 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,16 +29,40 @@ public class FolhaPagamento implements Serializable{
     @Temporal(TemporalType.DATE)
     private Calendar data;
     
-    @Column(nullable = false, columnDefinition = "DECIMAL(10,2)")
+    @Column(nullable = false, precision = 10, scale = 2)
     private Double valorReceber;
+    
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
+    private Professores professor;
 
     public FolhaPagamento() {
     }
 
-    public FolhaPagamento(Calendar data, Double valorReceber) {
+    public FolhaPagamento(Integer numeroPag, Calendar data, Double valorReceber, Professores professor) {
+        this.numeroPag = numeroPag;
         this.data = data;
         this.valorReceber = valorReceber;
+        this.professor = professor;
     }
+
+    public void setNumeroPag(Integer numeroPag) {
+        this.numeroPag = numeroPag;
+    }
+
+    public Integer getNumeroPag() {
+        return numeroPag;
+    }
+
+    public void setProfessor(Professores professor) {
+        this.professor = professor;
+    }
+
+    public Professores getProfessor() {
+        return professor;
+    }
+
+    
 
     public Calendar getData() {
         return data;

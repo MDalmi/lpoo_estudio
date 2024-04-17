@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,7 +28,6 @@ import javax.persistence.TemporalType;
  * @author dalmi
  */
 @Entity
-@Table(name = "tb_contratos")
 public class Contratos implements Serializable{
     
     @Id
@@ -38,24 +38,28 @@ public class Contratos implements Serializable{
     @Temporal(TemporalType.DATE)
     private Calendar dataInicio;
     
-    @Column(nullable = false, columnDefinition = "DECIMAL(10,2)")
+    @Column(nullable = false, precision = 10, scale = 2)
     private Double valorDesconto;
   
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "aluno_id", nullable = false)
     private Alunos aluno;
     
-     @Column(nullable = false)
-    private Collection<itensContratos> itensContrato;
-    
+    @ManyToOne
+    @JoinColumn(name = "itens_id")
+    private itensContratos itensContrato;
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private FormaPgt formaPgt;
     
 
     public Contratos() {
+ 
+        this.dataInicio = Calendar.getInstance();
     }
 
-    public Contratos(Integer id, Calendar dataInicio, Double valorDesconto, Alunos aluno, Collection<itensContratos> itensContrato, FormaPgt formaPgt) {
+    public Contratos(Integer id, Calendar dataInicio, Double valorDesconto, Alunos aluno, itensContratos itensContrato, FormaPgt formaPgt) {
         this.id = id;
         this.dataInicio = dataInicio;
         this.valorDesconto = valorDesconto;
@@ -63,6 +67,8 @@ public class Contratos implements Serializable{
         this.itensContrato = itensContrato;
         this.formaPgt = formaPgt;
     }
+
+   
 
     
 
@@ -100,13 +106,15 @@ public class Contratos implements Serializable{
         return formaPgt;
     }
 
-    public void setItensContrato(Collection<itensContratos> itensContrato) {
+    public void setItensContrato(itensContratos itensContrato) {
         this.itensContrato = itensContrato;
     }
 
-    public Collection<itensContratos> getItensContrato() {
+    public itensContratos getItensContrato() {
         return itensContrato;
     }
+
+    
 
     
 
