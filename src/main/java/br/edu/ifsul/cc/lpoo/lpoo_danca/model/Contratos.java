@@ -68,12 +68,6 @@ public class Contratos implements Serializable{
         this.formaPgt = formaPgt;
     }
 
-   
-
-    
-
-    
-
     public Integer getId() {
         return id;
     }

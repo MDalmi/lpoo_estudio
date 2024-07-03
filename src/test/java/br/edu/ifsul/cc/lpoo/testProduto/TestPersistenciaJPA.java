@@ -25,6 +25,7 @@ public class TestPersistenciaJPA {
             jpa.fecharConexao();
             
             Modalidades m = new Modalidades();
+            m.setId(1);
             m.setDescricao("teste");
             
             try {

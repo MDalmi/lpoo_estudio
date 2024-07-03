@@ -34,7 +34,7 @@ public class Pacotes implements Serializable{
     private Double valor;
     
     @ManyToOne
-    @JoinColumn(name = "modalidade_id")
+    @JoinColumn(name = "modalidades_id")
     private Modalidades modalidade;
 
     public Pacotes() {
