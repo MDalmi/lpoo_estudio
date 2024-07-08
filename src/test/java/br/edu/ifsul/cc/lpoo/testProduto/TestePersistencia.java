@@ -7,6 +7,7 @@ package br.edu.ifsul.cc.lpoo.testProduto;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.dao.PersistenciaJPA;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Alunos;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Contratos;
+import br.edu.ifsul.cc.lpoo.lpoo_danca.model.FolhaPagamento;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.FormaPgt;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Modalidades;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Pagamentos;
@@ -14,7 +15,10 @@ import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Pessoas;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.itensContratos;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Pacotes;
 import br.edu.ifsul.cc.lpoo.lpoo_danca.model.Professores;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.List;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
@@ -100,7 +104,7 @@ public class TestePersistencia {
         Modalidades m = new Modalidades();
 
         m.setDescricao("Dança da Chuva");
-        m.setId(1);
+       
 
         p.setDescricao("Pacote Danca da Chuva");
         p.setModalidade(m);
@@ -129,8 +133,9 @@ public class TestePersistencia {
 
         Contratos contrato = new Contratos();
         
+       
         contrato.setValorDesconto(100.0);
-        contrato.setFormaPgt(FormaPgt.DINHEIRO); // Exemplo de enum FormaPgt
+        contrato.setFormaPgt(FormaPgt.PIX); // Exemplo de enum FormaPgt
         contrato.setAluno(a);
         contrato.setItensContrato(ic1);
 
@@ -148,9 +153,38 @@ public class TestePersistencia {
         p1.setValor(1350.0);
         
         jpa.persist(p1);
-        
        
-     
-    }
+         List<Modalidades> moda = new ArrayList<>();
+         moda.add(m);
+         
+         
+        FolhaPagamento FP = new FolhaPagamento();
+       
+        FP.setData(c);
+        FP.setValorReceber(1500.0);
+        FP.setNumeroPag(12);
+        List<FolhaPagamento> pag = new ArrayList<>();
+        pag.add(FP);
+        
+        Professores prof = new Professores();
+        prof.setDataAniver(c);
+        prof.setId(2);
+        prof.setDataAdmissao(c);
+        prof.setEmail("12312");
+        prof.setEndereco("12312");
+        prof.setFone("12312");
+        
+        FP.setProfessor(prof);
+        prof.setNome("Cesar");
+        prof.setModalidades(moda);
+        
+        prof.setFolhapagamento(pag);
+        
+        
+        jpa.persist(prof);
+        
+    
+        jpa.persist(FP);
+    }   
 
 }

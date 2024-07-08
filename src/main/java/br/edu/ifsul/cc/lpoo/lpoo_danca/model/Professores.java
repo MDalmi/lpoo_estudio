@@ -37,11 +37,21 @@ public class Professores extends Pessoas{
     public Professores() {
     }
 
-    public Professores(Calendar dataAdmissao, Collection<FolhaPagamento> folhapagamento, Integer id, String nome, String fone, Calendar dataAniver, String email, String endereco) {
-        super(id, nome, fone, dataAniver, email, endereco);
+    public Professores(Calendar dataAdmissao, Collection<FolhaPagamento> folhapagamento, Collection<Modalidades> modalidades, Integer id, String nome, String fone, Calendar dataAniver, String email, String endereco) {
+        
         this.dataAdmissao = dataAdmissao;
         this.folhapagamento = folhapagamento;
+        this.modalidades = modalidades;
     }
+
+    public void setModalidades(Collection<Modalidades> modalidades) {
+        this.modalidades = modalidades;
+    }
+
+    public Collection<Modalidades> getModalidades() {
+        return modalidades;
+    }
+
 
     public Calendar getDataAdmissao() {
         return dataAdmissao;

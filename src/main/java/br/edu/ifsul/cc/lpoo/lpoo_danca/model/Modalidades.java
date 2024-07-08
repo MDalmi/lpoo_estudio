@@ -24,6 +24,7 @@ import javax.persistence.ManyToOne;
 public class Modalidades implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(nullable = false, length = 120)
