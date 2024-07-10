@@ -98,7 +98,7 @@ public class TestePersistencia {
     }
 
     @Test
-    public void testePersistenciaContrato_Pagamento() throws Exception {
+    public void testePersistenciaTodasClasses() throws Exception {
 
         Pacotes p = new Pacotes();
         Modalidades m = new Modalidades();
@@ -186,5 +186,62 @@ public class TestePersistencia {
     
         jpa.persist(FP);
     }   
+    
+    //@Test
+    public void testePessoasAlunoseProfessores()  throws Exception  {
+    
+        Calendar c = Calendar.getInstance();
+       
+        Modalidades m = new Modalidades();
+        
+        m.setDescricao("Dança Livre");
+        
+        jpa.persist(m);
+         List<Modalidades> moda = new ArrayList<>();
+         moda.add(m);
+          
+        Alunos a = new Alunos();
+        a.setId(1);
+        a.setEmail("seucarro.co");
+        a.setEndereco("Rua da Calma");
+        a.setFone("123123123");
+        a.setNome("Suares");
+        a.setDataPgm(18);
+        a.setDataInicio(Calendar.getInstance());
+        
+       
+        jpa.persist(a);
+        
+        FolhaPagamento FP = new FolhaPagamento();
+       
+        FP.setData(c);
+        FP.setValorReceber(1500.0);
+        FP.setNumeroPag(12);
+        List<FolhaPagamento> pag = new ArrayList<>();
+        pag.add(FP);
+        
+        Professores prof = new Professores();
+        prof.setDataAniver(c);
+        prof.setId(2);
+        prof.setDataAdmissao(c);
+        prof.setEmail("12312");
+        prof.setEndereco("12312");
+        prof.setFone("12312");
+        
+        FP.setProfessor(prof);
+        prof.setNome("Arnaldo");
+        prof.setModalidades(moda);
+        
+        prof.setFolhapagamento(pag);
+        
+        
+        jpa.persist(prof);
+        
+    
+        jpa.persist(FP);
+    
+    
+    }
+    
 
 }

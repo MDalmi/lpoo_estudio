@@ -15,7 +15,7 @@ import javax.persistence.Persistence;
  */
 public class PersistenciaJPA implements InterfacePersistencia{
     
-     public EntityManagerFactory factory;    //fabrica de gerenciadores de entidades
+    public EntityManagerFactory factory;    //fabrica de gerenciadores de entidades
     public EntityManager entity;    //gerenciador de entidades JPA
 
     public PersistenciaJPA() {

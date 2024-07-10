@@ -24,15 +24,9 @@ public class TestPersistenciaJPA {
             System.out.println("conectou no BD via jpa ...");
             jpa.fecharConexao();
             
-            Modalidades m = new Modalidades();
-            m.setId(1);
-            m.setDescricao("teste");
+           
             
-            try {
-                jpa.persist(m);
-            } catch (Exception e) {
-                System.out.println("Jpa não persistido!!");
-            }
+       
             
         } else {
             System.out.println("nao conectou no BD ...");
